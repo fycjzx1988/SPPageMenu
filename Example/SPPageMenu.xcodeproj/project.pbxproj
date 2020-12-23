@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,8 @@
 		095E9C1F1FA6F8CC0097A889 /* SixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 095E9C121FA6F8CC0097A889 /* SixViewController.m */; };
 		095E9C211FA6F8CC0097A889 /* ThidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 095E9C171FA6F8CC0097A889 /* ThidViewController.m */; };
 		095E9C291FA6F92D0097A889 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 095E9C281FA6F92D0097A889 /* SPPageMenu.m */; };
+		53F209B2259341560032E186 /* page_menu_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F209B1259341560032E186 /* page_menu_icon@3x.png */; };
+		53F209BA259345350032E186 /* dingwei@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F209B9259345350032E186 /* dingwei@2x.png */; };
 		6A8808C1213D361D00C3553F /* mateor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6A8808BF213D361C00C3553F /* mateor.jpg */; };
 		6A9270122179BCF400831045 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9270102179BCF400831045 /* JSBadgeView.m */; };
 /* End PBXBuildFile section */
@@ -86,6 +88,8 @@
 		095E9C171FA6F8CC0097A889 /* ThidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThidViewController.m; sourceTree = "<group>"; };
 		095E9C271FA6F92D0097A889 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		095E9C281FA6F92D0097A889 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
+		53F209B1259341560032E186 /* page_menu_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page_menu_icon@3x.png"; sourceTree = "<group>"; };
+		53F209B9259345350032E186 /* dingwei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dingwei@2x.png"; sourceTree = "<group>"; };
 		6A8808BF213D361C00C3553F /* mateor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mateor.jpg; sourceTree = "<group>"; };
 		6A9270102179BCF400831045 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
 		6A9270112179BCF400831045 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			children = (
 				095E9C271FA6F92D0097A889 /* SPPageMenu.h */,
 				095E9C281FA6F92D0097A889 /* SPPageMenu.m */,
+				53F209B1259341560032E186 /* page_menu_icon@3x.png */,
+				53F209B9259345350032E186 /* dingwei@2x.png */,
 			);
 			path = SPPageMenu;
 			sourceTree = "<group>";
@@ -303,8 +309,8 @@
 				TargetAttributes = {
 					091A68711FA1CAC100DAA561 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = N7GTHGMGVY;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 433QH2NS3F;
+						ProvisioningStyle = Manual;
 					};
 					091A688A1FA1CAC200DAA561 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -321,10 +327,11 @@
 				};
 			};
 			buildConfigurationList = 091A686D1FA1CAC100DAA561 /* Build configuration list for PBXProject "SPPageMenu" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -347,6 +354,8 @@
 			files = (
 				091A68851FA1CAC100DAA561 /* LaunchScreen.storyboard in Resources */,
 				091A68821FA1CAC100DAA561 /* Assets.xcassets in Resources */,
+				53F209BA259345350032E186 /* dingwei@2x.png in Resources */,
+				53F209B2259341560032E186 /* page_menu_icon@3x.png in Resources */,
 				6A8808C1213D361D00C3553F /* mateor.jpg in Resources */,
 				091A68801FA1CAC100DAA561 /* Main.storyboard in Resources */,
 			);
@@ -548,13 +557,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7GTHGMGVY;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 433QH2NS3F;
 				INFOPLIST_FILE = SPPageMenu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.idresschina.SPPageMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonbox.chen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = huajianqingliaoDevMobleProfile;
 			};
 			name = Debug;
 		};
@@ -564,11 +574,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7GTHGMGVY;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SPPageMenu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.idresschina.SPPageMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moonbox.chen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

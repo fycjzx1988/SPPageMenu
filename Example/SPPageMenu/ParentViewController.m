@@ -22,7 +22,7 @@
 
 #define screenW [UIScreen mainScreen].bounds.size.width
 #define screenH [UIScreen mainScreen].bounds.size.height
-#define pageMenuH 40
+#define pageMenuH 60
 #define NaviH (screenH >= 812 ? 88 : 64) // 812是iPhoneX的高度
 #define scrollViewHeight (screenH-NaviH-pageMenuH)
 
@@ -37,18 +37,23 @@
 
 // 示例1:SPPageMenuTrackerStyleLine,下划线样式
 - (void)test1 {
-    self.dataArr = @[@"生活",@"影视中心",@"交通",@"电视剧",@"搞笑",@"综艺"];
-
+    self.dataArr = @[[SPPageMenuButtonItem itemWithTitle:@"生活" image:[UIImage  imageNamed:@"dingwei"]],@"影视中心",@"交通",@"电视剧",@"搞笑",@"综艺"];
+    
     // trackerStyle:跟踪器的样式
-    SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, NaviH, screenW, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
+    SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, NaviH, screenW, pageMenuH) trackerStyle:SPPageMenuTrackerStyleCustomImage];
+    pageMenu.tracker.image = [UIImage imageNamed:@"page_menu_icon"];
     // 传递数组，默认选中第2个
     [pageMenu setItems:self.dataArr selectedItemIndex:0];
+    SPPageBottomLabel *pagelabel = [[SPPageBottomLabel alloc] initWithBottomLabel:[UIColor redColor] font:[UIFont systemFontOfSize:8] title:@"当前级别"];
+    [pageMenu setUpItemsBtmTitle:pagelabel selectItem:1];
     // 设置代理
     pageMenu.delegate = self;
     // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
     pageMenu.bridgeScrollView = self.scrollView;
     [self.view addSubview:pageMenu];
     _pageMenu = pageMenu;
+    NSLog(@"%@", pageMenu.buttons);
+    
 }
 
 // 示例2:SPPageMenuTrackerStyleLineLongerThanItem,下划线比item略长，长度等于tem宽＋间距
@@ -324,7 +329,7 @@
     // 传递数组，默认选中第2个
     [pageMenu setItems:self.dataArr selectedItemIndex:1];
     // 同时设置图片和文字，如果只想要文字，image传nil，如果只想要图片，title传nil，imagePosition和ratio传0即可
-    [pageMenu setFunctionButtonContent:[SPPageMenuButtonItem itemWithTitle:@"更多" image:[UIImage imageNamed:@"Expression_1"] imagePosition:SPItemImagePositionTop] forState:UIControlStateNormal];
+//    [pageMenu setFunctionButtonContent:[SPPageMenuButtonItem itemWithTitle:@"更多" image:[UIImage imageNamed:@"Expression_1"] imagePosition:SPItemImagePositionTop] forState:UIControlStateNormal];
     [pageMenu setFunctionButtonTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} forState:UIControlStateNormal];
     pageMenu.showFuntionButton = YES;
     // 设置代理
@@ -359,18 +364,18 @@
     // 指定第1个item为图片
     [pageMenu setImage:[UIImage imageNamed:@"Expression_1"] forItemAtIndex:0];
     // 指定第2个item同时含有图片和文字，图片在上
-    SPPageMenuButtonItem *item1 = [SPPageMenuButtonItem itemWithTitle:@"害羞" image:[UIImage imageNamed:@"Expression_2"]];
-    item1.imagePosition = SPItemImagePositionTop;
-    [pageMenu setItem:item1 forItemAtIndex:1];
-    // 指定第4个item同时含有图片和文字，图片在右
-//    [pageMenu setTitle:@"可爱的小狗" image:[UIImage imageNamed:@"dog"] imagePosition:SPItemImagePositionDefault imageRatio:0.4 imageTitleSpace:0 forItemIndex:3];
-    SPPageMenuButtonItem *item2 = [SPPageMenuButtonItem itemWithTitle:@"歌曲" image:[UIImage imageNamed:@"asc"] imagePosition:SPItemImagePositionRight];
-    [pageMenu setItem:item2 forItemAtIndex:3];
-    pageMenu.delegate = self;
-    // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
-    pageMenu.bridgeScrollView = self.scrollView;
-    [self.view addSubview:pageMenu];
-    _pageMenu = pageMenu;
+//    SPPageMenuButtonItem *item1 = [SPPageMenuButtonItem itemWithTitle:@"害羞" image:[UIImage imageNamed:@"Expression_2"]];
+//    item1.imagePosition = SPItemImagePositionTop;
+//    [pageMenu setItem:item1 forItemAtIndex:1];
+//    // 指定第4个item同时含有图片和文字，图片在右
+////    [pageMenu setTitle:@"可爱的小狗" image:[UIImage imageNamed:@"dog"] imagePosition:SPItemImagePositionDefault imageRatio:0.4 imageTitleSpace:0 forItemIndex:3];
+////    SPPageMenuButtonItem *item2 = [SPPageMenuButtonItem itemWithTitle:@"歌曲" image:[UIImage imageNamed:@"asc"] imagePosition:SPItemImagePositionRight];
+//    [pageMenu setItem:item2 forItemAtIndex:3];
+//    pageMenu.delegate = self;
+//    // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
+//    pageMenu.bridgeScrollView = self.scrollView;
+//    [self.view addSubview:pageMenu];
+//    _pageMenu = pageMenu;
 }
 
 // 示例19:设置背景图片

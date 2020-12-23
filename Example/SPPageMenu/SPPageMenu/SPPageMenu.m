@@ -1112,17 +1112,17 @@
 }
 
 - (void)setUpItemsBtmTitle:(SPPageBottomLabel *)pageLabel selectItem:(NSInteger)index {
-    pageLabel.textAlignment = NSTextAlignmentCenter;
-    _btmTitlelb = pageLabel;
-    _selectIndex = index;
-    
-    for (UIView * view in _backgroundView.subviews) {
-        if ([view isKindOfClass:[pageLabel class]]) {
-            [view removeFromSuperview];
+    if (pageLabel) {
+        pageLabel.textAlignment = NSTextAlignmentCenter;
+        _btmTitlelb = pageLabel;
+        _selectIndex = index;
+        
+        for (UIView * view in _backgroundView.subviews) {
+            if ([view isKindOfClass:[pageLabel class]]) {
+                [view removeFromSuperview];
+            }
         }
-    }
-    [_backgroundView addSubview:pageLabel];
-    if (![self isBlankString:pageLabel.stitle]) {
+        [_backgroundView addSubview:pageLabel];
         pageLabel.text = pageLabel.stitle;
         pageLabel.font = pageLabel.sft;
         pageLabel.textColor = _btmTitlelb.scolor;
@@ -1130,23 +1130,8 @@
             SPPageMenuButton * btn = self.buttons[index];
             float trackerY = _itemScrollViewH*0.5+10;
             self.btmTitlelb.frame = CGRectMake(btn.frame.origin.x, trackerY, 40, 10);
-            
-//            self.btmTitlelb.fra
         }
     }
-}
-
-- (BOOL) isBlankString:(NSString *)string {
-    if (string == nil || string == NULL) {
-        return YES;
-    }
-    if ([string isKindOfClass:[NSNull class]]) {
-        return YES;
-    }
-    if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
-        return YES;
-    }
-    return NO;
 }
 
 

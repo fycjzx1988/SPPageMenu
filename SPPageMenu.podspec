@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SPPageMenu"
-  s.version      = "3.5.0"
+  s.version      = "3.6.0"
   s.summary      = "分页菜单."
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 			     这是一个分页菜单
                    DESC
 
-  s.homepage     = "https://github.com/SPStore/SPPageMenu"
+  s.homepage     = "https://github.com/fycjzx1988/SPPageMenu"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/SPStore/SPPageMenu.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/fycjzx1988/SPPageMenu.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

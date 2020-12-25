@@ -1134,6 +1134,7 @@
             self.btmTitlelb.center = CGPointMake(btn.center.x, trackerY);
         }
     }
+    [_btmTitlelb setHidden:index == _selectedItemIndex ? true : false];
 }
 
 

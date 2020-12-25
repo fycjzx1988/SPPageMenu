@@ -1122,14 +1122,16 @@
                 [view removeFromSuperview];
             }
         }
-        [_backgroundView addSubview:pageLabel];
+        [_itemScrollView addSubview:pageLabel];
         pageLabel.text = pageLabel.stitle;
         pageLabel.font = pageLabel.sft;
         pageLabel.textColor = _btmTitlelb.scolor;
         if (self.buttons.count > 0) {
             SPPageMenuButton * btn = self.buttons[index];
-            float trackerY = _itemScrollViewH*0.5+10;
-            self.btmTitlelb.frame = CGRectMake(btn.frame.origin.x, trackerY, 40, 10);
+            
+            self.btmTitlelb.frame = CGRectMake(0, 0, 40, 10);
+            float trackerY = _itemScrollViewH*0.5+17;
+            self.btmTitlelb.center = CGPointMake(btn.center.x, trackerY);
         }
     }
 }
@@ -1368,6 +1370,14 @@
     } else if (self.trackerStyle == SPPageMenuTrackerStyleRoundedRect) {
         newCenter.x = fromButton.center.x + xDistance * progress;
         newFrame.size.width = _trackerWidth ? _trackerWidth : (fromButton.frame.size.width + wDistance * progress + _itemPadding);
+        self.tracker.frame = newFrame;
+        self.tracker.center = newCenter;
+        if (_selectedItemZoomScale != 1) {
+            [self zoomForTitleWithProgress:progress fromButton:fromButton toButton:toButton];
+        }
+    } else if (self.trackerStyle == SPPageMenuTrackerStyleCustomImage)  {
+        newCenter.x = fromButton.center.x + xDistance * progress;
+        newFrame.size.width = self.tracker.image.size.width;
         self.tracker.frame = newFrame;
         self.tracker.center = newCenter;
         if (_selectedItemZoomScale != 1) {

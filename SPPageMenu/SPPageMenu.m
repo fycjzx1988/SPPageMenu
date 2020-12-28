@@ -45,6 +45,21 @@
 
 @end
 
+
+
+@implementation SPPageBottomLabel
+
+- (instancetype)initWithBottomLabel:(UIColor *)btnColor font:(UIFont*)bf title:(NSString *)title {
+    if (self = [super init]) {
+        self.sft = bf;
+        self.scolor = btnColor;
+        self.stitle = title;
+    }
+    return self;
+}
+@end
+
+
 @interface SPPageMenuButton : UIButton
 
 - (instancetype)initWithImagePosition:(SPItemImagePosition)imagePosition;
@@ -407,9 +422,10 @@
 @property (nonatomic, weak) UIView *backgroundView;
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *dividingLine;
+@property (nonatomic, strong) SPPageBottomLabel *btmTitlelb;
+@property (nonatomic, assign) NSInteger selectIndex;
 @property (nonatomic, weak) SPPageMenuScrollView *itemScrollView;
 @property (nonatomic, weak) SPPageMenuButton *functionButton;
-@property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) SPPageMenuButton *selectedButton;
 @property (nonatomic, strong) NSMutableDictionary *customWidths;
 @property (nonatomic, strong) NSMutableDictionary *customSpacings;
@@ -1092,7 +1108,35 @@
     functionButton.hidden = !_showFuntionButton;
     [backgroundView addSubview:functionButton];
     _functionButton = functionButton;
+    
 }
+
+- (void)setUpItemsBtmTitle:(SPPageBottomLabel *)pageLabel selectItem:(NSInteger)index {
+    if (pageLabel) {
+        pageLabel.textAlignment = NSTextAlignmentCenter;
+        _btmTitlelb = pageLabel;
+        _selectIndex = index;
+        
+        for (UIView * view in _backgroundView.subviews) {
+            if ([view isKindOfClass:[pageLabel class]]) {
+                [view removeFromSuperview];
+            }
+        }
+        [_itemScrollView addSubview:pageLabel];
+        pageLabel.text = pageLabel.stitle;
+        pageLabel.font = pageLabel.sft;
+        pageLabel.textColor = _btmTitlelb.scolor;
+        if (self.buttons.count > 0) {
+            SPPageMenuButton * btn = self.buttons[index];
+            
+            self.btmTitlelb.frame = CGRectMake(0, 0, 40, 10);
+            float trackerY = _itemScrollViewH*0.5+17;
+            self.btmTitlelb.center = CGPointMake(btn.center.x, trackerY);
+        }
+    }
+    [_btmTitlelb setHidden:index == _selectedItemIndex ? true : false];
+}
+
 
 // 按钮点击方法
 - (void)buttonInPageMenuClicked:(SPPageMenuButton *)sender {
@@ -1100,6 +1144,13 @@
     NSInteger toIndex = sender.tag - tagBaseValue;
     // 更新下item对应的下标,必须在代理之前，否则外界在代理方法中拿到的不是最新的
     _selectedItemIndex = toIndex;
+    if (_selectIndex == toIndex) {
+        [_btmTitlelb setHidden:true];
+    } else {
+        [_btmTitlelb setHidden:false];
+    }
+    
+    
     // 如果sender是新的选中的按钮，则上一次的按钮颜色为非选中颜色，当前选中的颜色为选中颜色
     if (self.selectedButton != sender) {
         [self.selectedButton setTitleColor:_unSelectedItemTitleColor forState:UIControlStateNormal];
@@ -1320,6 +1371,14 @@
     } else if (self.trackerStyle == SPPageMenuTrackerStyleRoundedRect) {
         newCenter.x = fromButton.center.x + xDistance * progress;
         newFrame.size.width = _trackerWidth ? _trackerWidth : (fromButton.frame.size.width + wDistance * progress + _itemPadding);
+        self.tracker.frame = newFrame;
+        self.tracker.center = newCenter;
+        if (_selectedItemZoomScale != 1) {
+            [self zoomForTitleWithProgress:progress fromButton:fromButton toButton:toButton];
+        }
+    } else if (self.trackerStyle == SPPageMenuTrackerStyleCustomImage)  {
+        newCenter.x = fromButton.center.x + xDistance * progress;
+        newFrame.size.width = self.tracker.image.size.width;
         self.tracker.frame = newFrame;
         self.tracker.center = newCenter;
         if (_selectedItemZoomScale != 1) {
@@ -1878,6 +1937,16 @@
             self.tracker.layer.masksToBounds = YES;
         }
             break;
+        case SPPageMenuTrackerStyleCustomImage:
+        {
+            trackerH = self.tracker.image.size.height;
+            trackerW = self.tracker.image.size.width;
+            trackerX = selectedButton.frame.origin.x;
+            trackerY = (_itemScrollViewH-trackerH)*0.5+18;
+            self.tracker.frame = CGRectMake(trackerX, trackerY, trackerW, trackerH);
+            self.tracker.layer.cornerRadius = MIN(trackerW, trackerH)*0.5;
+            self.tracker.layer.masksToBounds = YES;
+        }
         default:
             break;
     }

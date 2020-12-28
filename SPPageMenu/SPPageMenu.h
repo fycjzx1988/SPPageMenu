@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, SPPageMenuTrackerStyle) {
     SPPageMenuTrackerStyleRoundedRect,               // 圆角矩形
     SPPageMenuTrackerStyleRect,                      // 矩形
     SPPageMenuTrackerStyleTextZoom NS_ENUM_DEPRECATED_IOS(6_0, 6_0, "该枚举值已经被废弃，请用“selectedItemZoomScale”属性代替"), // 缩放(该枚举已经被废弃,用属性代替的目的是让其余样式可与缩放样式配套使用。如果你同时设置了该枚举和selectedItemZoomScale属性，selectedItemZoomScale优先级高于SPPageMenuTrackerStyleTextZoom
-    SPPageMenuTrackerStyleNothing                    // 什么样式都没有
+    SPPageMenuTrackerStyleNothing,                    // 什么样式都没有
+    SPPageMenuTrackerStyleCustomImage
 };
 
 typedef NS_ENUM(NSInteger, SPPageMenuPermutationWay) {
@@ -40,7 +41,7 @@ typedef NS_ENUM(NSInteger, SPItemImagePosition) {
     SPItemImagePositionBottom     // 图片在文字下侧
 };
 
-@class SPPageMenu,SPPageMenuButtonItem;
+@class SPPageMenu,SPPageMenuButtonItem,SPPageBottomLabel;
 
 @protocol SPPageMenuDelegate <NSObject>
 
@@ -89,6 +90,7 @@ typedef NS_ENUM(NSInteger, SPItemImagePosition) {
 
 // 外界添加控制器view的srollView，pageMenu会监听该scrollView的滚动状况，让跟踪器时刻跟随此scrollView滑动；所谓的滚动状况，是指手指拖拽滚动，非手指拖拽不算
 @property (nonatomic, strong) UIScrollView *bridgeScrollView;
+@property (nonatomic, strong) NSMutableArray *buttons;
 
 // 跟踪器
 @property (nonatomic, readonly) UIImageView *tracker; // 跟踪器,它是一个UIImageView类型，你可以拿到该对象去设置一些自己想要的属性,例如颜色,图片等
@@ -190,6 +192,8 @@ typedef NS_ENUM(NSInteger, SPItemImagePosition) {
 - (void)setFunctionButtonWithItem:(SPPageMenuButtonItem *)item forState:(UIControlState)state NS_DEPRECATED_IOS(6_0, 6_0, "Use -setFunctionButtonContent:forState:");
 - (void)setItem:(SPPageMenuButtonItem *)item forItemIndex:(NSUInteger)itemIndex NS_DEPRECATED_IOS(6_0, 6_0, "Use -setItem:forItemAtIndex:");
 - (void)setContent:(id)content forItemIndex:(NSUInteger)itemIndex NS_DEPRECATED_IOS(6_0, 6_0, "Use -setContent:forItemAtIndex:");
+
+- (void)setUpItemsBtmTitle:(SPPageBottomLabel *)pageLabel selectItem:(NSInteger)index;
 @end
 
 
@@ -207,6 +211,16 @@ typedef NS_ENUM(NSInteger, SPItemImagePosition) {
 @property (nonatomic, assign) SPItemImagePosition imagePosition;
 // 图片与标题之间的间距,默认0.0
 @property (nonatomic, assign) CGFloat imageTitleSpace;
+
+@end
+
+@interface SPPageBottomLabel : UILabel
+
+- (instancetype)initWithBottomLabel:(UIColor *)btnColor font:(UIFont*)bf title:(NSString *)title;
+
+@property (nonatomic,strong) UIColor * scolor; // 底部问题的颜色
+@property (nonatomic,strong) UIFont * sft; // 底部文字的大小
+@property (nonatomic,copy) NSString * stitle; // 底部文字
 
 @end
 

@@ -7,7 +7,6 @@
 //
 
 #import "SPPageMenu.h"
-//*增加测试函数*//
 #define tagBaseValue 100
 #define scrollViewContentOffset @"contentOffset"
 

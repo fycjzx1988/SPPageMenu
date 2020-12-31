@@ -1061,6 +1061,7 @@
     _funtionButtonshadowOpacity = 0.5;
     _selectedItemZoomScale = 1;
     _needTextColorGradients = YES;
+    _trackerBottomY = 8;
     [self setupSubViews];
 }
 
@@ -1942,7 +1943,7 @@
             trackerH = self.tracker.image.size.height;
             trackerW = self.tracker.image.size.width;
             trackerX = selectedButton.frame.origin.x;
-            trackerY = (_itemScrollViewH-trackerH)*0.5+18;
+            trackerY = _itemScrollViewH-trackerH - _trackerBottomY;
             self.tracker.frame = CGRectMake(trackerX, trackerY, trackerW, trackerH);
             self.tracker.layer.cornerRadius = MIN(trackerW, trackerH)*0.5;
             self.tracker.layer.masksToBounds = YES;

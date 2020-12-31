@@ -95,6 +95,7 @@ typedef NS_ENUM(NSInteger, SPItemImagePosition) {
 // 跟踪器
 @property (nonatomic, readonly) UIImageView *tracker; // 跟踪器,它是一个UIImageView类型，你可以拿到该对象去设置一些自己想要的属性,例如颜色,图片等
 @property (nonatomic, assign)  CGFloat trackerWidth; // 跟踪器的宽度
+@property (nonatomic, assign)  CGFloat trackerBottomY; // 跟踪器距离底部的距离
 - (void)setTrackerHeight:(CGFloat)trackerHeight cornerRadius:(CGFloat)cornerRadius; // 设置跟踪器的高度和圆角半径，矩形和圆角矩形样式下半径参数无效。其余样式下：默认的高度为3，圆角半径为高度的一半。
 @property (nonatomic, assign) SPPageMenuTrackerFollowingMode trackerFollowingMode; // 跟踪器的跟踪模式
 

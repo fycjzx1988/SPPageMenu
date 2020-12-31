@@ -42,6 +42,7 @@
     // trackerStyle:跟踪器的样式
     SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, NaviH, screenW, pageMenuH) trackerStyle:SPPageMenuTrackerStyleCustomImage];
     pageMenu.tracker.image = [UIImage imageNamed:@"page_menu_icon"];
+    pageMenu.trackerBottomY = 10;
     // 传递数组，默认选中第2个
     [pageMenu setItems:self.dataArr selectedItemIndex:0];
     SPPageBottomLabel *pagelabel = [[SPPageBottomLabel alloc] initWithBottomLabel:[UIColor redColor] font:[UIFont systemFontOfSize:8] title:@"当前级别"];
